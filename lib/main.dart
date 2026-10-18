@@ -27,9 +27,9 @@ class _ShellState extends State<Shell> {
   int tab = 0;
   @override
   Widget build(BuildContext context) {
-    final pages = [const WorkTab(), const EmployerView(), const ResearchTab()];
+    
     return Scaffold(
-      body: SafeArea(child: Column(children: [demoBanner(), Expanded(child: ListenableBuilder(listenable: store, builder: (c, _) => pages[tab]))])),
+      body: SafeArea(child: Column(children: [demoBanner(), Expanded(child: ListenableBuilder(listenable: store, builder: (c, _) => [WorkTab(), EmployerView(), ResearchTab()][tab]))])),
       bottomNavigationBar: NavigationBar(
         selectedIndex: tab, onDestinationSelected: (i) => setState(() => tab = i), backgroundColor: Colors.white, indicatorColor: Colors.transparent, height: 64,
         destinations: const [
@@ -163,7 +163,7 @@ class EmployerView extends StatelessWidget {
           ),
         ),
       if (shown.isEmpty) const Padding(padding: EdgeInsets.all(32), child: Center(child: Text('Nothing shown yet.', style: TextStyle(color: g500)))),
-      const Padding(padding: EdgeInsets.fromLTRB(20, 4, 20, 0), child: Text('Green "Confirmed" means a named person said yes. Grey "Self-reported" means only you said it. Employers can tell the difference.', style: TextStyle(color: g500, fontSize: 12))),
+      const Padding(padding: EdgeInsets.fromLTRB(20, 4, 20, 0), child: Text('Green "Confirmed" means a named person said yes. Grey "Self-reported" means only you said it. Employers can tell the difference. In this demo every confirmation is simulated.', style: TextStyle(color: g500, fontSize: 12))),
     ]);
   }
 }
